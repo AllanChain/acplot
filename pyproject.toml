@@ -1,0 +1,25 @@
+[project]
+name = "acplot"
+version = "0.0.1"
+authors = [
+  { name="Allan Chain" },
+]
+description = "Matplotlib utilities and styles for personal use"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "scienceplots>=2.0.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AllanChain/acplot"
+"Bug Tracker" = "https://github.com/AllanChain/acplot/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
