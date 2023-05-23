@@ -21,5 +21,5 @@ dependencies = [
 "Bug Tracker" = "https://github.com/AllanChain/acplot/issues"
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
