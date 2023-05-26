@@ -11,3 +11,5 @@ lines.markersize: 10
 ytick.right: False
 xtick.top: False
 
+savefig.dpi: 150
+savefig.bbox: tight
