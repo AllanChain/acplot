@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import string
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -50,3 +51,15 @@ def merge_draw_legends(ax, *axes):
     for _ax in axes:
         handles.extend(_ax.get_legend_handles_labels()[0])
     ax.legend(handles=handles)
+
+
+def label_axes(axes, xytext=(-0.2, 0.4)):
+    for i, ax in enumerate(axes):
+        ax.annotate(
+            r"\bfseries " + string.ascii_letters[i],
+            xy=(0, 1),
+            xytext=xytext,
+            xycoords="axes fraction",
+            textcoords="offset fontsize",
+            horizontalalignment="right",
+        )
