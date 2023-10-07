@@ -38,7 +38,14 @@ def figure(
     plt.show()
 
 
-def merge_legends(ax, *axes):
+def merge_legends(*axes):
+    handles = []
+    for ax in axes:
+        handles.extend(ax.get_legend_handles_labels()[0])
+    return handles
+
+
+def merge_draw_legends(ax, *axes):
     handles, _ = ax.get_legend_handles_labels()
     for _ax in axes:
         handles.extend(_ax.get_legend_handles_labels()[0])
