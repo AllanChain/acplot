@@ -1,6 +1,47 @@
-ytick.right: False
-xtick.top: False
-legend.fontsize: small
+# This is modified from "SciencePlots"
+# see: https://github.com/garrettj403/SciencePlots
+
+# Set default figure size
+figure.figsize: 3.5, 2.625
 figure.dpi: 150
+
+# Set x axis
+xtick.direction: in
+xtick.major.size: 3
+xtick.major.width: 0.5
+xtick.minor.size: 1.5
+xtick.minor.width: 0.5
+xtick.minor.visible: True
+
+# Set y axis
+ytick.direction: in
+ytick.major.size: 3
+ytick.major.width: 0.5
+ytick.minor.size: 1.5
+ytick.minor.width: 0.5
+ytick.minor.visible: True
+
+# Set line widths
+axes.linewidth: 0.5
+grid.linewidth: 0.5
+lines.linewidth: 1.
+
+# Remove legend frame
+legend.frameon: False
+legend.fontsize: small
+
+# Always save as 'tight'
 savefig.bbox: tight
+savefig.pad_inches: 0.05
 savefig.transparent: True
+
+# Use serif fonts
+font.serif: cmr10, Computer Modern Serif, DejaVu Serif, Noto Serif CJK SC
+font.family: serif
+axes.formatter.use_mathtext: True
+mathtext.fontset: cm
+
+# Use LaTeX for math formatting
+text.usetex: True
+text.latex.preamble: \usepackage{amsmath} \usepackage{amssymb}
+

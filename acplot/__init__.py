@@ -4,12 +4,9 @@ import string
 from contextlib import contextmanager
 from pathlib import Path
 
-import scienceplots  # NOQA
 from matplotlib import pyplot as plt
 
 save_dir = Path(".")
-
-plt.style.use(["science", Path(__file__).parent / "default.mplstyle"])
 
 
 def savefig(name: str, img_format: str = "pdf"):
@@ -28,7 +25,8 @@ def figure(
     **kwargs,
 ) -> None:
     plt.close(name)
-    yield plt.figure(name, figsize=figsize, **kwargs)
+    with plt.style.context(Path(__file__).parent / "default.mplstyle"):
+        yield plt.figure(name, figsize=figsize, **kwargs)
     if save:
         if save is True:
             save = ["pdf"]

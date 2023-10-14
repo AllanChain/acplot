@@ -12,9 +12,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = [
-  "scienceplots>=2.0.0"
-]
 
 [project.urls]
 "Homepage" = "https://github.com/AllanChain/acplot"
