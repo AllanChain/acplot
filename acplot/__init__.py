@@ -11,7 +11,7 @@ from matplotlib.font_manager import FontManager
 CN_FONTS = ["KaiTi", "FandolKai", "Noto Serif CJK SC"]
 
 
-class figure:
+class acplot:
     name: str
     save_formats: list[str]
     kwargs: dict[str, Any]
@@ -88,7 +88,7 @@ class figure:
 
     @staticmethod
     def merge_draw_legends(ax, *axes):
-        handles = figure.merge_legends(ax, *axes)
+        handles = acplot.merge_legends(ax, *axes)
         ax.legend(handles=handles)
 
     @staticmethod
