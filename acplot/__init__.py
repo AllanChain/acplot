@@ -103,4 +103,5 @@ class figure:
                 xycoords="axes fraction",
                 textcoords="offset fontsize",
                 horizontalalignment="right",
+                fontfamily="cmb10",
             )
