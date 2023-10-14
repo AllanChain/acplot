@@ -36,12 +36,7 @@ savefig.pad_inches: 0.05
 savefig.transparent: True
 
 # Use serif fonts
-font.serif: cmr10, Computer Modern Serif, DejaVu Serif, Noto Serif CJK SC
-font.family: serif
+font.serif: cmr10, Computer Modern Serif, DejaVu Serif
+font.family: serif, KaiTi, FandolKai, Noto Serif CJK SC
 axes.formatter.use_mathtext: True
 mathtext.fontset: cm
-
-# Use LaTeX for math formatting
-text.usetex: True
-text.latex.preamble: \usepackage{amsmath} \usepackage{amssymb}
-
