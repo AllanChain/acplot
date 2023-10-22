@@ -14,6 +14,7 @@ CN_FONTS = ["KaiTi", "FandolKai", "Noto Serif CJK SC"]
 class acplot:
     name: str
     save_formats: list[str]
+    dark: bool
     kwargs: dict[str, Any]
     save_dir = Path(".")
     fig: Figure | None = None
@@ -23,15 +24,18 @@ class acplot:
         name: str,
         save: str | list[str] | bool = False,
         save_dir: Path | None = None,
+        dark: bool = False,
         **kwargs,
     ) -> None:
         self.name = name
+        self.dark = dark
         self.kwargs = kwargs
         if save_dir is not None:
             self.save_dir = save_dir
-        self.style_context = plt.style.context(
-            Path(__file__).parent / "default.mplstyle"
-        )
+        stylesheets = [Path(__file__).parent / "default.mplstyle"]
+        if dark:
+            stylesheets.append("dark_background")
+        self.style_context = plt.style.context(stylesheets)
         if save is True:
             self.save_formats = ["pdf"]
         elif save is False:
@@ -60,6 +64,7 @@ class acplot:
                     img_format=img_format,
                     fig=self.fig,
                     save_dir=self.save_dir,
+                    transparent=not self.dark,
                 )
             plt.show()
         self.style_context.__exit__(exc_type, exc_value, traceback)
@@ -70,6 +75,7 @@ class acplot:
         img_format: str = "pdf",
         fig: Figure | None = None,
         save_dir: Path = Path("."),
+        transparent: bool = True,
     ):
         if not save_dir.exists():
             save_dir.mkdir(parents=True)
@@ -77,7 +83,7 @@ class acplot:
         kwargs = {}
         if img_format == "pdf":
             kwargs["metadata"] = {"CreationDate": None}
-        (fig or plt).savefig(file_path, **kwargs)
+        (fig or plt).savefig(file_path, transparent=transparent, **kwargs)
 
     @staticmethod
     def merge_legends(*axes):
