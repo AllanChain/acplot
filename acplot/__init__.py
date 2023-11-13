@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.font_manager import FontManager
 
-CN_FONTS = ["KaiTi", "FandolKai", "Noto Serif CJK SC"]
+CN_FONTS = ["KaiTi", "STKaiti", "FandolKai", "Noto Serif CJK SC"]
 
 
 class acplot:
