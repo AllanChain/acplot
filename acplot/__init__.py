@@ -2,13 +2,17 @@ from __future__ import annotations
 
 import string
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.font_manager import FontManager
 
-CN_FONTS = ["KaiTi", "STKaiti", "FandolKai", "Noto Serif CJK SC"]
+FontFamily = Literal["serif", "sans-serif", "cursive", "fantasy", "monospace"]
+CN_FONTS: dict[FontFamily, list[str]] = {
+    "serif": ["KaiTi", "STKaiti", "FandolKai", "Noto Serif CJK SC"],
+    "sans-serif": ["Noto Sans CJK SC"],
+}
 
 
 class acplot:
@@ -25,6 +29,7 @@ class acplot:
         save: str | list[str] | bool = False,
         save_dir: Path | None = None,
         dark: bool = False,
+        font_family: FontFamily = "serif",
         **kwargs,
     ) -> None:
         self.name = name
@@ -43,16 +48,21 @@ class acplot:
         elif isinstance(save, str):
             self.save_formats = [save]
 
-        self.font_family = ["serif"]
+        self.font_family = [font_family]
         supported_fonts = set(
-            f.name for f in FontManager().ttflist if f.name in CN_FONTS
+            f.name
+            for f in FontManager().ttflist
+            if f.name in CN_FONTS.get(font_family, [])
         )
         self.font_family.extend(supported_fonts)
+
+        if "figsize_cm" in kwargs:  # cm to inch
+            kwargs["figsize"] = tuple(x / 2.54 for x in kwargs.pop("figsize_cm"))
 
     def __enter__(self):
         plt.close(self.name)
         self.style_context.__enter__()
-        plt.rc('font', family=self.font_family)
+        plt.rc("font", family=self.font_family)
         self.fig = plt.figure(self.name, **self.kwargs)
         return self.fig
 
