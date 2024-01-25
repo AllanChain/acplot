@@ -21,6 +21,7 @@ class acplot:
     dark: bool
     kwargs: dict[str, Any]
     save_dir = Path(".")
+    rcParams: dict[str, Any]= {}
     fig: Figure | None = None
 
     def __init__(
@@ -41,6 +42,7 @@ class acplot:
         if dark:
             stylesheets.append("dark_background")
         self.style_context = plt.style.context(stylesheets)
+        self.rc_context = plt.rc_context(self.rcParams)
         if save is True:
             self.save_formats = ["pdf"]
         elif save is False:
@@ -61,6 +63,7 @@ class acplot:
 
     def __enter__(self):
         plt.close(self.name)
+        self.rc_context.__enter__()
         self.style_context.__enter__()
         plt.rc("font", family=self.font_family)
         self.fig = plt.figure(self.name, **self.kwargs)
@@ -78,6 +81,7 @@ class acplot:
                 )
             plt.show()
         self.style_context.__exit__(exc_type, exc_value, traceback)
+        self.rc_context.__exit__(exc_type, exc_value, traceback)
 
     @staticmethod
     def savefig(
