@@ -29,9 +29,12 @@ axes.linewidth: 0.5
 grid.linewidth: 0.5
 lines.linewidth: 1.
 
+# Set marker size
+lines.markersize: 3
+
 # Remove legend frame
 legend.frameon: False
-legend.fontsize: small
+legend.fontsize: 6
 
 # Always save as 'tight'
 savefig.bbox: tight
@@ -42,5 +45,6 @@ savefig.transparent: True
 # Use serif fonts
 font.serif: cmr10, Computer Modern Serif, DejaVu Serif
 font.family: serif, KaiTi, FandolKai, Noto Serif CJK SC
+font.size: 8
 axes.formatter.use_mathtext: True
 mathtext.fontset: cm
