@@ -21,7 +21,7 @@ class acplot:
     dark: bool
     kwargs: dict[str, Any]
     save_dir = Path(".")
-    rcParams: dict[str, Any]= {}
+    rcParams: dict[str, Any] = {}
     fig: Figure | None = None
 
     def __init__(
@@ -77,7 +77,6 @@ class acplot:
                     img_format=img_format,
                     fig=self.fig,
                     save_dir=self.save_dir,
-                    transparent=not self.dark,
                 )
             plt.show()
         self.style_context.__exit__(exc_type, exc_value, traceback)
@@ -89,7 +88,6 @@ class acplot:
         img_format: str = "pdf",
         fig: Figure | None = None,
         save_dir: Path = Path("."),
-        transparent: bool = True,
     ):
         if not save_dir.exists():
             save_dir.mkdir(parents=True)
@@ -97,7 +95,7 @@ class acplot:
         kwargs = {}
         if img_format == "pdf":
             kwargs["metadata"] = {"CreationDate": None}
-        (fig or plt).savefig(file_path, transparent=transparent, **kwargs)
+        (fig or plt).savefig(file_path, **kwargs)
 
     @staticmethod
     def merge_legends(*axes):
