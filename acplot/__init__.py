@@ -110,19 +110,18 @@ class acplot:
         ax.legend(handles=handles)
 
     @staticmethod
-    def label_axes(axes=None, xytext=(-0.2, 0.4), use_parentheses: bool = False):
+    def label_axes(axes=None, offset=(-0.02, 0.05), use_parentheses: bool = False):
         if axes is None:
             axes = plt.gcf().axes
         for i, ax in enumerate(axes):
             label = string.ascii_letters[i]
             if use_parentheses:
                 label = f"({label})"
-            ax.annotate(
+            ax.text(
+                0 + offset[0],
+                1 + offset[1],
                 label,
-                xy=(0, 1),
-                xytext=xytext,
-                xycoords="axes fraction",
-                textcoords="offset fontsize",
+                transform=ax.transAxes,
                 horizontalalignment="right",
                 fontfamily="cmb10",
             )
